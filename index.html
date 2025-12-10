@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>TOTVS - Certificado de Emissão de Relatórios</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+        color: #000;
+    }
+
+    h1 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    input[type="text"] {
+        width: 300px;
+        padding: 3px 5px;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 3px 10px;
+        font-size: 12px;
+        margin-left: 4px;
+        cursor: pointer;
+    }
+
+    #msg {
+        margin-top: 15px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<h1>TOTVS - Certificado de Emissão de Relatórios</h1>
+
+<form onsubmit="verificar(); return false;">
+    <label for="codigo">Informe a identificação do relatório:</label><br>
+    <input type="text" id="codigo" placeholder="Digite o código">
+    <button type="submit">Buscar</button>
+</form>
+
+<p id="msg"></p>
+
+<script>
+function verificar() {
+    // Mapa de códigos -> links
+    const relatorios = {
+        "b3893495-73cf-4dec-8bc5-8d270f15adab": "https://drive.google.com/file/d/1UG4kbm0Zbx7izOza0bTs0WZpnMP6OWt5/view?usp=sharing",
+        "1405aa31-d50b-4299-9855-258b86e43903": "https://drive.google.com/file/d/1nnoqfrVOp3r_42bXFO0doe92_HdHii3h/view?usp=sharing"
+    };
+
+    const entrada = document.getElementById("codigo").value.trim();
+
+    if (relatorios[entrada]) {
+        document.getElementById("msg").innerHTML =
+            "<span style='color:green;'>Código válido! Abrindo relatório...</span>";
+        window.location.href = relatorios[entrada];
+    } else {
+        document.getElementById("msg").innerHTML =
+            "<span style='color:red;'>Código incorreto. Tente novamente.</span>";
+    }
+}
+</script>
+
+</body>
+</html>
